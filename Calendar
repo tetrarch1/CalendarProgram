@@ -1,0 +1,77 @@
+import java.lang.Math;
+class Main {
+  public static void main(String[] args) {
+    Calndr(3,1,2000);
+  }
+  public static void Calndr(int month, int day, int year) {
+    int monthadd = 0;
+    int leapadd = 0;
+    if (month == 4||month == 7){
+      monthadd = 6;
+    }
+    if (month == 1||month == 10){
+      monthadd = 0;
+    }
+    if (month == 2||month == 3||month == 11){
+      monthadd = 3;
+    }
+    if (month == 5){
+      monthadd = 1;
+    }
+    if (month == 6){
+      monthadd = 4;
+    }
+    if (month == 8){
+      monthadd = 2;
+    }
+    if (month == 9||month == 12){
+      monthadd = 5;
+    }
+    int centurycode = 0;
+    centurycode = (int)Math.floor(year/100);
+    int cadd = 0;
+    if (centurycode%4 == 1){
+      cadd = 5;
+    }
+    if (centurycode%4 == 2){
+      cadd = 3;
+    }
+    if (centurycode%4 == 3){
+      cadd = 1;
+    }
+    if (centurycode%4 == 4){
+      cadd = 6;
+      leapadd = 1;
+    }
+    int endyr = 0;
+    endyr = year - 100*centurycode;
+    leapadd = leapadd + (int)Math.floor(endyr/4);
+    if (endyr%4 == 0 && month <= 2){
+      if (endyr != 0 || centurycode%4 == 0){
+        leapadd = leapadd - 1;
+      }
+    }
+    int d = (leapadd + cadd + monthadd + day + endyr+6)%7;
+    if (d == 0){
+      System.out.println("Sunday");
+    }
+    if (d == 1){
+      System.out.println("Monday");
+    }
+    if (d == 2){
+      System.out.println("Tuesday");
+    }
+    if (d == 3){
+      System.out.println("Wednesday");
+    }
+    if (d == 4){
+      System.out.println("Thursday");
+    }
+    if (d == 5){
+      System.out.println("Friday");
+    }
+    if (d == 6){
+      System.out.println("Saturday");
+    }
+  }
+}
